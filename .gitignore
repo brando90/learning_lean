@@ -158,3 +158,68 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+# lean4 ref: https://github.com/leanprover/lean4/blob/master/.gitignore
+*~
+\#*
+.#*
+*.lock
+.lake
+lake-manifest.json
+build
+!/src/lake/Lake/Build
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+.projectile
+.lean_options
+.vs
+compile_commands.json
+*.idea
+tasks.json
+settings.json
+.gdb_history
+.vscode/*
+!.vscode/settings.json
+*.produced.out
+CMakeSettings.json
+CppProperties.json
+result
+fwIn.txt
+fwOut.txt
+wdErr.txt
+wdIn.txt
+wdOut.txt
+
+# mac os x gitignore
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# lean
+/build
+/lake-packages/*
