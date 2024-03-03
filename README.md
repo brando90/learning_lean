@@ -1,5 +1,11 @@
 # learning_lean
 
+## Youtube channel for learning Lean 4
+
+Here is a link of live proving tutorials from this repo: https://www.youtube.com/playlist?list=PLB3sDpSRdrOt68MTR6kdI0Jc85Uuw1YWV
+
+## Setup
+
 **Do not** run `install.sh` blindly. 
 There is no guarantee it will work on your machine. 
 Therefore, understand each command and only run the next command if the current one succeeded. 
