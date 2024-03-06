@@ -104,6 +104,17 @@ Do `.` to handle each case e.g., in induction.
 ### Tacticals
 Note: `;` is not a tactical. TODO what is?
 
+### Options
+
+```lean4
+set_option pp.implicit true
+set_option pp.universes true
+set_option pp.notation false
+set_option pp.numerals false
+```
+
+ref: https://leanprover.github.io/reference/other_commands.html#options
+
 ### Expressions
 
 TODO: `\forall x : R, x < 0'
