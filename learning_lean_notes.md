@@ -3,10 +3,16 @@
 [Opening a lean project in VSCODE.](https://proofassistants.stackexchange.com/questions/2760/how-does-one-create-a-lean-project-and-have-mathlib-import-work-when-not-creatin/3779#3779)
 
 We start of the bat recommending good sources for learning Lean 4:
+- [documentation, some links there copied bellow](https://lean-lang.org/documentation/)
 - [Theorem proving in Lean](https://leanprover.github.io/theorem_proving_in_lean4/)
 - [Mathematics in Lean, nice tutorial using maths on how to use Lean!](https://leanprover-community.github.io/mathematics_in_lean/)
 - [Functional Programming in Lean](https://leanprover.github.io/functional_programming_in_lean/)
 - [Lean4 manual](https://lean-lang.org/lean4/doc/whatIsLean.html)
+- [The Mechantics of Proof](https://hrmacbeth.github.io/math2001/)
+
+Tactics refs
+- [Lean 3](https://leanprover.github.io/reference/tactics.html)
+- [Lean tactic Reference neu cs280](https://course.ccs.neu.edu/cs2800sp23/ref.html)
 
 The goal will be to give an overview of useful tips for proving in Lean
 
@@ -55,6 +61,14 @@ ref: https://leanprover.github.io/theorem_proving_in_lean4/tactics.html
 
 - `rwa` calls `rw`, then closes any remaining goals using `assumption`. Note: found by writing `rwa` in tactic mode then using vscode to get to it's def. Mathlib4 search, Moogle, didn't help surprisingly.
 
+### Apply tactic
+
+> `H` must be a **hypothesis** or **theorem** with type `P1 -> P2 -> ... -> PN -> Q`, where the **goal** has type `Q`. This tactic will replace the goal with `N` separate goals, `P1`, through `PN`, as it corresponds to deciding to prove the premises of `H` and then using it to prove the goal. In the simply case where you just have `P -> Q` this will replace `Q` with `P`.
+
+remark: theorem/hypothesis are "applied"/treated as "inference rules" (if they have if, iff, mp, mpr).
+
+Q: can apply be applied to hypothesis or how can it interact with hypothesis? (afaik only though elim rule as in CS477)
+
 ### Constructor tactic
 
 - `constructor` If the main goal's target type is an inductive type, constructor solves it with the first matching constructor, or else fails.
@@ -97,12 +111,40 @@ e.g.,
 have h_pos : 0 < x⁻¹ := inv_pos.mpr h_x_pos
 ```
 
-### Dot deperator for cases
+### Cases tactic
+
+> if `id` is **a hypothesis (Hs)** of some inductive type, perform case analysis on it, either constructing **multiple hypotheses (if it (Hs) is a product type \and, x cartesian)** or **multiple goals (Gs) (if it is a sum type)**.
+Q: todo, what does constructing multiple hypothesis means? Does this mean multiple hs to same proof state or more proof states are constructed with the "splitting" of Hs in original proof state?
+> Notice that and-introduction and and-elimination are similar to the pairing and projection operations for the Cartesian product. The difference is that given hp : p and hq : q, And.intro hp hq has type p ∧ q : Prop, while Prod hp hq has type p × q : Type. The similarity between ∧ and × is another instance of the Curry-Howard isomorphism, but in contrast to implication and the function space constructor, ∧ and × are treated separately in Lean.
+
+Remark: curry-howard isomorphism & logical ops e.g., `\and` <-> correspondance with product/cartesian product `x`. `\or` <-> sum type (idk what this is yet).
+
+Tips:
+> 1. The (unstructured) cases is particularly useful when you can close several subgoals using the same tactic. https://leanprover.github.io/theorem_proving_in_lean4/tactics.html#more-tactics
+
+Q: "The cases tactic can be used to decompose any element of an inductively defined type; constructor always applies the first applicable constructor of an inductively defined type."
+
+> Lean 3: For example, given `n : nat` and a goal with a hypothesis `h : P n` and target `Q n`, `cases n` produces one goal with hypothesis `h : P 0` and `target Q 0`, and one goal with hypothesis `h : P (nat.succ a)` and target `Q (nat.succ a)`. Here the name a is chosen automatically.
+
+Q: cases applied to a sum seems to produce multiple goals/proof states to completed.
+
+> Q: There are two constructors for Or, called Or.inl : a → a ∨ b and Or.inr : b → a ∨ b, and you can use match or cases to destruct an Or assumption into the two cases (from Or msg in vscode hovering)
+
+- naming new hypothesis with `cases h with`, ref: https://leanprover.zulipchat.com/#narrow/stream/113489-new-members/topic/how.20to.20name.20new.20hypothesis.20using.20cases.20h.20with.20in.20Lean.204/near/425170964 
+> TODO
+
+ref:
+  - https://leanprover.github.io/theorem_proving_in_lean4/tactics.html#more-tactics
+  - https://course.ccs.neu.edu/cs2800sp23/ref.html
+
+
+### Dot deperator for cases .
 Do `.` to handle each case e.g., in induction.
 
 
 ### Tacticals
 Note: `;` is not a tactical. TODO what is?
+TODO: tactical vs combinators `tac1 <;> tac2`
 
 ### Options
 
@@ -138,7 +180,8 @@ Exists delta, P delta -> P' delta <==>
 - elaboration
 - proof term
 - proof obligation
-- discharge
+- discharge vs closed in context of target vs goal/proof state etc
+- goal vs proof term vs target: sometimes a doc will say a new "goal" which in my terminology means a proof state (=local context, + goals). The target is the actual thing to be proved (what I used to "confusingly" used to call goal). So careful what things mean in each context.
 
 ### Questions:
 Q: what is a macro again?
@@ -146,3 +189,5 @@ Q: why is there this Init.Tactics vs Std.Tactic.Rcases
 https://leanprover-community.github.io/mathlib4_docs/Std/Tactic/RCases.html#Std.Tactic.rintro
 https://leanprover-community.github.io/mathlib4_docs/Init/Tactics.html#Lean.Parser.Tactic.constructor
 Q: destructing patterns, rcases, rintro & rcases vs constructor
+Q: apply but to the hypothesis, how it works? afaik only elim tactic can do it and apply always matches goal to do anything
+Q: def of induction (and program) and how it's a rule in the context of apply vs induction n. Compare them.
