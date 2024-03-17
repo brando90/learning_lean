@@ -136,7 +136,16 @@ Q: cases applied to a sum seems to produce multiple goals/proof states to comple
 ref:
   - https://leanprover.github.io/theorem_proving_in_lean4/tactics.html#more-tactics
   - https://course.ccs.neu.edu/cs2800sp23/ref.html
+  - my conv about `cases h with`: https://leanprover.zulipchat.com/#narrow/stream/113489-new-members/topic/how.20to.20name.20new.20hypothesis.20using.20cases.20h.20with.20in.20Lean.204 
 
+
+### repeat and repeat'
+
+> repeat' tac runs tac on all of the goals to produce a new list of goals, then runs tac again on all of those goals, and repeats until tac fails on all remaining goals.
+e.g., if you have 3 goals (proof states) that resulted from applying a theorem that gave 3 identical new subgoals (e.g., `a->a->a->goal` and you have `a` three times) and you want to solve `a` quickly with say assumption or simp, then you can do `reapeat' assumption` which would close the three goals/proof states by applying assumption for you 3 times instead of having to use the dot notation `.` to close each goal/proof state seperately manually.
+
+### deriving Repr
+`deriving Repr`
 
 ### Dot deperator for cases .
 Do `.` to handle each case e.g., in induction.
@@ -160,6 +169,16 @@ ref: https://leanprover.github.io/reference/other_commands.html#options
 ### Expressions
 
 TODO: `\forall x : R, x < 0'
+
+### Structures
+
+Structure:
+> A specification of a collection of data, possibly with constraints that the data is required to satisfy.
+
+Instance:
+> is a bundle of data satisfying the structure's data constriants
+
+
 
 ### Mathlib tips
 
