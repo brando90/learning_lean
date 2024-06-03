@@ -12,3 +12,5 @@ require mathlib from git
 lean_lib «LeanSrcProj» {
   -- add any library configuration options here
 }
+
+require aesop from git "https://github.com/JLimperg/aesop"

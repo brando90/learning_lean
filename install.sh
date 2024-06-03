@@ -28,6 +28,14 @@ echo 'import Mathlib.Topology.Basic\n\n#check TopologicalSpace' > Test.lean
 mkdir MyLean4CodeFolder2
 cd MyLean4CodeFolder2
 echo 'import Mathlib.Topology.Basic\n\n#check TopologicalSpace' > Test.lean
+# Create 3rd folder with Lean 4 code
+cd $HOME/learning_lean/lean_src_proj
+mkdir AesopExample
+cd AesopExample
+echo -e 'import Aesop\n\nexample : α → α :=\n  by aesop' > AesopExample/aesop_example.lean
+# 
+echo -e '\n\nrequire aesop from git "https://github.com/JLimperg/aesop"' >> lakefile.lean
+cat $HOME/learning_lean/lean_src_proj/lakefile.lean
 # ...etc...
 # Note: confusingly, the official tutorial for creating a Lean 4 project (which for them is usually the root of the git repo) has a folder named `my_project/MyProject/` 
 # (or a subfolder thereof), for details see: https://leanprover-community.github.io/install/project.html
