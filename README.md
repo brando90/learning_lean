@@ -16,7 +16,7 @@ If you git cloned this repo with say `git clone git@github.com:brando90/learning
 
 If that is the case, then you need to install mathlib for this project (note doing `lake +leanprover/lean4:nightly-2023-02-04 new my_project math` as suggested by the Lean [projects setup will fail](https://leanprover-community.github.io/install/project.html#creating-a-lean-project) does **not work**) with:
 ```bash
-# go to root project/main repo
+# go to root main repo
 cd $HOME/learning_lean
 git clone git@github.com:brando90/learning_lean.git
 # go to lean proj
