@@ -16,6 +16,18 @@ Therefore, understand each command and only run the next command if the current 
 In our case the root of the repo is not the Lean 4 project and instead with have a seperate folder for the Lean 4 source code (that will be the root of the Lean 4 project) at `learning_lean/lean_src_proj`. 
 - Github project root: For pure Lean 4 Projects it's the same as the root of the Lean 4 project root. For that's not the case and there might be an additional `py_src` too. 
 
+### Tools in a Lean 4 Project
+
+- `elan`: 
+  - `elan` is a version manager for the Lean programming language, similar to `pyenv` or `conda` for Python.
+  - It allows users to install and manage multiple versions of Lean, ensuring that each project can use the specific version it requires.
+  - `elan` reads the `lean-toolchain` file in a project to automatically switch to the correct Lean version when working on that project.
+
+- `lake`: 
+  - `lake` is the package manager and build system for Lean 4, akin to `pip` and `poetry` for Python.
+  - It manages project dependencies, configuration, and the build process, specified in the `lakefile.lean`.
+  - `lake` facilitates the setup and compilation of Lean projects, ensuring all dependencies are resolved and build steps are executed as defined.
+
 ### Files in a Lean 4 Project
 ref: https://chatgpt.com/g/g-689rdwbPb-dsp-for-lean4/c/9b13ceec-7fc8-4c29-b809-666145781b16
 
@@ -53,20 +65,6 @@ ref: https://chatgpt.com/g/g-689rdwbPb-dsp-for-lean4/c/9b13ceec-7fc8-4c29-b809-6
     ```
 
 Note: While `lean-toolchain` ensures that all users of the project use the same version of the Lean compiler for consistency, `lakefile.lean` manages the project's dependencies and build configuration, specifying additional Lean libraries and build scripts required for the project's development and build process; thus, `lean-toolchain` handles the core Lean compiler version, whereas `lakefile.lean` handles project-specific library dependencies (e.g., Mathlib, Aesop).
-
-
-
-### Tools in a Lean 4 Project
-
-- `elan`: 
-  - `elan` is a version manager for the Lean programming language, similar to `pyenv` or `conda` for Python.
-  - It allows users to install and manage multiple versions of Lean, ensuring that each project can use the specific version it requires.
-  - `elan` reads the `lean-toolchain` file in a project to automatically switch to the correct Lean version when working on that project.
-
-- `lake`: 
-  - `lake` is the package manager and build system for Lean 4, akin to `pip` and `poetry` for Python.
-  - It manages project dependencies, configuration, and the build process, specified in the `lakefile.lean`.
-  - `lake` facilitates the setup and compilation of Lean projects, ensuring all dependencies are resolved and build steps are executed as defined.
 
 
 ## For developing Lean in this repo
