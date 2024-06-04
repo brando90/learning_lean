@@ -33,9 +33,19 @@ cd $HOME/learning_lean/lean_src_proj
 mkdir AesopExample
 cd AesopExample
 echo -e 'import Aesop\n\nexample : α → α :=\n  by aesop' > AesopExample/aesop_example.lean
-# 
-echo -e '\n\nrequire aesop from git "https://github.com/JLimperg/aesop"' >> lakefile.lean
-cat $HOME/learning_lean/lean_src_proj/lakefile.lean
+# Add Aesop dependency to lakefile.lean if not already present
+if ! grep -q 'require aesop from git "https://github.com/JLimperg/aesop"' lakefile.lean; then
+  echo 'require aesop from git "https://github.com/JLimperg/aesop"' >> lakefile.lean
+  echo "Added Aesop dependency to lakefile.lean."
+else
+  echo "Aesop dependency already exists in lakefile.lean."
+fi
+# Recompile Lean 4 Project at `learning_lean/lean_src_proj`
+cd $HOME/learning_lean/lean_src_proj
+lake update
+lake exe cache get
+# lake build
+
 # ...etc...
 # Note: confusingly, the official tutorial for creating a Lean 4 project (which for them is usually the root of the git repo) has a folder named `my_project/MyProject/` 
 # (or a subfolder thereof), for details see: https://leanprover-community.github.io/install/project.html
