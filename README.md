@@ -18,12 +18,12 @@ In our case the root of the repo is not the Lean 4 project and instead with have
 
 ### Tools in a Lean 4 Project
 
-- `elan`: 
+- `elan`: (for the PL e.g., `Lean4` like something that would manage `python`)
   - `elan` is a version manager for the Lean programming language, similar to `pyenv` or `conda` for Python.
   - It allows users to install and manage multiple versions of Lean, ensuring that each project can use the specific version it requires.
   - `elan` reads the `lean-toolchain` file in a project to automatically switch to the correct Lean version when working on that project.
 
-- `lake`: 
+- `lake`: (for the pkg depedencies e.g., cmd similar for deps management for `conda` or `pip`)
   - `lake` is the package manager and build system for Lean 4, akin to `pip` and `poetry` for Python.
   - It manages project dependencies, configuration, and the build process, specified in the `lakefile.lean`.
   - `lake` facilitates the setup and compilation of Lean projects, ensuring all dependencies are resolved and build steps are executed as defined.
